@@ -41,11 +41,11 @@ class AlumnoController{
             ? $this->model->Actualizar($alm)
             : $this->model->Registrar($alm);
         
-        header('Location: index.php');
+        header('Location: alumnos.php');
     }
     
     public function Eliminar(){
         $this->model->Eliminar($_REQUEST['id']);
-        header('Location: index.php');
+        header('Location: alumnos.php');
     }
 }

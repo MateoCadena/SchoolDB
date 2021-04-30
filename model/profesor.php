@@ -10,6 +10,7 @@ class Profesor
     public $Licenciatura;
     public $FechaRegistro;
     public $FechaNacimiento;
+    public $Foto;
     public $Correo;
 
 	public function __CONSTRUCT()
@@ -46,7 +47,7 @@ class Profesor
 		try 
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM profesor WHERE id_p = ?");
+			          ->prepare("SELECT * FROM profesor WHERE id = ?");
 			          
 
 			$stm->execute(array($id));
@@ -62,7 +63,7 @@ class Profesor
 		try 
 		{
 			$stm = $this->pdo
-			            ->prepare("DELETE FROM profesor WHERE id_p = ?");			          
+			            ->prepare("DELETE FROM profesor WHERE id = ?");			          
 
 			$stm->execute(array($id));
 		} catch (Exception $e) 
@@ -76,12 +77,13 @@ class Profesor
 		try 
 		{
 			$sql = "UPDATE profesor SET 
-						nombre_p          = ?, 
-						apellido_p        = ?,
-                        correo_p        = ?,
-						sexo_p            = ?, 
-						fecha_nacimiento = ?
-				    WHERE id_ = ?";
+						Nombre          = ?, 
+						Apellido        = ?,
+                        Correo        = ?,
+						Sexo            = ?,
+						Licenciatura            = ?, 
+						FechaNacimiento = ?
+				    WHERE id = ?";
 
 			$this->pdo->prepare($sql)
 			     ->execute(
@@ -105,7 +107,7 @@ class Profesor
 	{
 		try 
 		{
-		$sql = "INSERT INTO profesor (nombre_p, apellido_p, sexo_p,licenciatura, fecha_nacimiento, fecha_registro, correo_p) 
+		$sql = "INSERT INTO profesor (Nombre,Correo,Apellido,Sexo,Licenciatura,FechaNacimiento,FechaRegistro) 
 		        VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		$this->pdo->prepare($sql)

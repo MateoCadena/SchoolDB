@@ -10,43 +10,43 @@ class ProfesorController{
     }
     
     public function Index(){
-        require_once 'view/header.php';
+        require_once 'view/headerp.php';
         require_once 'view/profesor/profesor.php';
-        require_once 'view/footer.php';
+        require_once 'view/footerp.php';
     }
     
     public function Crud(){
-        $almp = new Profesor();
+        $alm = new Profesor();
         
         if(isset($_REQUEST['id'])){
-            $almp = $this->model->Obtener($_REQUEST['id']);
+            $alm = $this->model->Obtener($_REQUEST['id']);
         }
         
-        require_once 'view/header.php';
+        require_once 'view/headerp.php';
         require_once 'view/profesor/profesor-editar.php';
-        require_once 'view/footer.php';
+        require_once 'view/footerp.php';
     }
     
     public function Guardar(){
-        $almp = new Profesor();
+        $alm = new Profesor();
         
-        $almp->id = $_REQUEST['id'];
-        $almp->Nombre = $_REQUEST['Nombre'];
-        $almp->Apellido = $_REQUEST['Apellido'];
-        $almp->Correo = $_REQUEST['Correo'];
-        $almp->Sexo = $_REQUEST['Sexo'];
-        $almp->Licenciatura = $_REQUEST['licenciatura'];
-        $almp->FechaNacimiento = $_REQUEST['FechaNacimiento'];
+        $alm->id = $_REQUEST['id'];
+        $alm->Nombre = $_REQUEST['Nombre'];
+        $alm->Apellido = $_REQUEST['Apellido'];
+        $alm->Correo = $_REQUEST['Correo'];
+        $alm->Sexo = $_REQUEST['Sexo'];
+        $alm->Licenciatura = $_REQUEST['Licenciatura'];
+        $alm->FechaNacimiento = $_REQUEST['FechaNacimiento'];
 
-        $almp->id > 0 
-            ? $this->model->Actualizar($almp)
-            : $this->model->Registrar($almp);
+        $alm->id > 0 
+            ? $this->model->Actualizar($alm)
+            : $this->model->Registrar($alm);
         
-        header('Location: index.php');
+        header('Location: profesores.php');
     }
     
     public function Eliminar(){
         $this->model->Eliminar($_REQUEST['id']);
-        header('Location: index.php');
+        header('Location: profesores.php');
     }
 }

@@ -1,15 +1,11 @@
 <?php
-class Alumno
+class Cursos
 {
 	private $pdo;
     
     public $id;
     public $Nombre;
-    public $Apellido;
-    public $Sexo;
-    public $FechaNacimiento;
-    public $FechaRegistro;
-    public $Correo;
+   
 
 	public function __CONSTRUCT()
 	{
@@ -29,7 +25,7 @@ class Alumno
 		{
 			$result = array();
 
-			$stm = $this->pdo->prepare("SELECT * FROM alumnos");
+			$stm = $this->pdo->prepare("SELECT * FROM cursos");
 			$stm->execute();
 
 			return $stm->fetchAll(PDO::FETCH_OBJ);
@@ -45,7 +41,7 @@ class Alumno
 		try 
 		{
 			$stm = $this->pdo
-			          ->prepare("SELECT * FROM alumnos WHERE id = ?");
+			          ->prepare("SELECT * FROM cursos WHERE id = ?");
 			          
 
 			$stm->execute(array($id));
@@ -61,7 +57,7 @@ class Alumno
 		try 
 		{
 			$stm = $this->pdo
-			            ->prepare("DELETE FROM alumnos WHERE id = ?");			          
+			            ->prepare("DELETE FROM cursos WHERE id = ?");			          
 
 			$stm->execute(array($id));
 		} catch (Exception $e) 
@@ -74,24 +70,16 @@ class Alumno
 	{
 		try 
 		{
-			$sql = "UPDATE alumnos SET 
-						Nombre          = ?, 
-						Apellido        = ?,
-                        Correo        = ?,
-						Sexo            = ?,
-						FechaNacimiento = ?
+			$sql = "UPDATE cursos SET 
+						Nombre          = ?
 				    WHERE id = ?";
 
 			$this->pdo->prepare($sql)
 			     ->execute(
 				    array(
-                        $data->Nombre, 
-                        $data->Correo,
-                        $data->Apellido,
-                        $data->Sexo,
-                        $data->FechaNacimiento,
+                        $data->Nombre,
                         $data->id
-					)
+                        )
 				);
 		} catch (Exception $e) 
 		{
@@ -99,22 +87,17 @@ class Alumno
 		}
 	}
 
-	public function Registrar(Alumno $data)
+	public function Registrar(Cursos $data)
 	{
 		try 
 		{
-		$sql = "INSERT INTO alumnos (Nombre,Correo,Apellido,Sexo,FechaNacimiento,FechaRegistro) 
-		        VALUES (?, ?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO cursos (Nombre)
+		        VALUES (?)";
 
 		$this->pdo->prepare($sql)
 		     ->execute(
 				array(
-                    $data->Nombre,
-                    $data->Correo, 
-                    $data->Apellido, 
-                    $data->Sexo,
-                    $data->FechaNacimiento,
-                    date('YYYY-mm-dd')
+                    $data->Nombre
                 )
 			);
 		} catch (Exception $e) 

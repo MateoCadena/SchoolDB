@@ -1,42 +1,43 @@
-<h1 class="page-header">Profesores</h1>
+<h1 class="page-header"><center>Profesores</center></h1>
 
 <div class="well well-sm text-right">
-    <a class="btn btn-primary" href="?c=Profesor&a=Crud">Nuevo Profesor</a>
+    <a  class="btn btn-primary" href="?d=Profesor&e=Crud">Nuevo Profesor</a>
 </div>
 
-
-    <table class="table table-striped">
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th style="width:110;">Nombre</th>
-            <th style="width:110;">Apellido</th>
-            <th style="width:110;">Correo</th>
-            <th style="width:110;">Sexo</th>
-            <th style="width:110;">Licenciatura</th>
-            <th style="width:110;">Nacimiento</th>
-            <th style="width:60px;"></th>
-            <th style="width:60px;"></th>
+            <th style="width:180px;">Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th style="width:120px;">Sexo</th>
+            <th style="width:150px;">Licenciatura</th>
+            <th style="width:120px;">Nacimiento</th>
         </tr>
     </thead>
     <tbody>
-    <?php foreach($this->model->Listar() as $r): ?>
-        <tr>
-            <td><?php echo $r->nombre_p; ?></td>
-            <td><?php echo $r->apellido_p; ?></td>
-            <td><?php echo $r->correo_p; ?></td>
-            <td><?php echo $r->sexo_p == 1 ? 'Hombre' : 'Mujer'; ?></td>
-            <td><?php echo $r->licenciatura; ?></td>
-            <td><?php echo $r->fecha_nacimiento; ?></td>
-            <td>
-                <a href="?c=Profesor&a=Crud&id=<?php echo $r->id_p; ?>">Editar</a>
-            </td>
-            <td>
-                <a onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?c=Profesor&a=Eliminar&id=<?php echo $r->id_p; ?>">Eliminar</a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
+        <?php foreach($this->model->Listar() as $r): ?>
+            <tr>
+                <td><?php echo $r->Nombre; ?></td>
+                <td><?php echo $r->Apellido; ?></td>
+                <td><?php echo $r->Correo; ?></td>
+                <td><?php echo $r->Sexo == 1 ? 'Hombre' : 'Mujer'; ?></td>
+                <td><?php echo $r->Licenciatura; ?></td>
+                <td><?php echo $r->FechaNacimiento; ?></td>
+                <td>
+                    <a class="btn btn-success" href="?d=Profesor&e=Crud&id=<?php echo $r->id; ?>">Editar</a>
+                </td>
+                <td>
+                    <a  class="btn btn-danger" onclick="javascript:return confirm('¿Seguro de eliminar este registro?');" href="?d=Profesor&e=Eliminar&id=<?php echo $r->id; ?>">Eliminar</a>
+                </td>
+
+
+            </tr>
+        <?php endforeach; ?>
     </tbody>
+
 </table> 
 
-
-
+<p align="right">
+   <a class="btn btn-primary" href="index.html">Volver</a> 
+</p>

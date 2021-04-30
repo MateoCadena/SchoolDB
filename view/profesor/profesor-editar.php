@@ -1,49 +1,47 @@
 <h1 class="page-header">
-    <?php echo $almp->id != null ? $almp->Nombre : 'Nuevo Registro'; ?>
+    <?php echo $alm->id != null ? $alm->Nombre : 'Nuevo Registro'; ?>
 </h1>
 
-<ol class="breadcrumb">
-  <li><a href="?c=Profesor">Profesores</a></li>
-  <li class="active"><?php echo $almp->id != null ? $almp->Nombre : 'Nuevo Registro'; ?></li>
+<ol class="breadcrumb" style='background-color:#F9EBEA'>
+  <li><a>Profesor</a></li>
+  <li class="active"><?php echo $alm->id != null ? $alm->Nombre : 'Nuevo Registro'; ?></li>
 </ol>
 
-   <form id="frm-profesor" action="?c=Profesor&a=Guardar" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?php echo $almp->id; ?>" />
+<form id="frm-profesor" action="?d=Profesor&e=Guardar" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<?php echo $alm->id; ?>" />
     
     <div class="form-group">
         <label>Nombre</label>
-        <input type="text" name="Nombre" value="<?php echo $almp->Nombre; ?>" class="form-control" placeholder="Ingrese su nombre" data-validacion-tipo="requerido|min:3" />
+        <input type="text" name="Nombre" value="<?php echo $alm->Nombre; ?>" class="form-control" placeholder="Ingrese su nombre" data-validacion-tipo="requerido|min:3" />
     </div>
     
     <div class="form-group">
         <label>Apellido</label>
-        <input type="text" name="Apellido" value="<?php echo $almp->Apellido; ?>" class="form-control" placeholder="Ingrese su apellido" data-validacion-tipo="requerido|min:10" />
+        <input type="text" name="Apellido" value="<?php echo $alm->Apellido; ?>" class="form-control" placeholder="Ingrese su apellido" data-validacion-tipo="requerido|min:10" />
     </div>
     
     <div class="form-group">
         <label>Correo</label>
-        <input type="text" name="Correo" value="<?php echo $almp->Correo; ?>" class="form-control" placeholder="Ingrese su correo electrónico" data-validacion-tipo="requerido|email" />
+        <input type="text" name="Correo" value="<?php echo $alm->Correo; ?>" class="form-control" placeholder="Ingrese su correo electrónico" data-validacion-tipo="requerido|email" />
     </div>
     
     <div class="form-group">
         <label>Sexo</label>
         <select name="Sexo" class="form-control">
-            <option <?php echo $almp->Sexo == 1 ? 'selected' : ''; ?> value="1">Masculino</option>
-            <option <?php echo $almp->Sexo == 2 ? 'selected' : ''; ?> value="2">Femenino</option>
+            <option <?php echo $alm->Sexo == 1 ? 'selected' : ''; ?> value="1">Masculino</option>
+            <option <?php echo $alm->Sexo == 2 ? 'selected' : ''; ?> value="2">Femenino</option>
         </select>
     </div>
 
     <div class="form-group">
         <label>Licenciatura</label>
-        <input type="text" name="licenciatura" value="<?php echo $almp->Licenciatura; ?>" class="form-control" placeholder="Ingrese su Profesion" data-validacion-tipo="requerido" />
+        <input type="text" name="Licenciatura" value="<?php echo $alm->Licenciatura; ?>" class="form-control" placeholder="Ingrese su profesion" data-validacion-tipo="requerido|min:5" />
     </div>
     
     <div class="form-group">
         <label>Fecha de nacimiento</label>
-        <input readonly type="text" name="FechaNacimiento" value="<?php echo $almp->FechaNacimiento; ?>" class="form-control datepicker" placeholder="Ingrese su fecha de nacimiento" data-validacion-tipo="requerido" />
+        <input readonly type="text" name="FechaNacimiento" value="<?php echo $alm->FechaNacimiento; ?>" class="form-control datepicker" placeholder="Ingrese su fecha de nacimiento" data-validacion-tipo="requerido" />
     </div>
-
-    
     
     <hr />
     
@@ -58,5 +56,4 @@
             return $(this).validate();
         });
     })
-</script> 
-
+</script>
