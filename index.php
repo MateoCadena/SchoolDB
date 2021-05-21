@@ -1,50 +1,8 @@
 <?php
-require_once 'model/database.php';
-
-$controller = 'alumno';
-$controller2 = 'profesor';
-
-// Todo esta lógica hara el papel de un FrontController
-if(!isset($_REQUEST['c']))
-{
-    require_once "controller/$controller.controller.php";
-    $controller = ucwords($controller) . 'Controller';
-    $controller = new $controller;
-    $controller->Index();    
+session_start();
+if(!empty($_SESSION["userId"])) {
+    require_once './consultas.html';
+} else {
+    require_once './view/login-form.php';
 }
-else
-{
-    // Obtenemos el controlador que queremos cargar
-    $controller = strtolower($_REQUEST['c']);
-    $accion = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Index';
-    
-    // Instanciamos el controlador
-    require_once "controller/$controller.controller.php";
-    $controller = ucwords($controller) . 'Controller';
-    $controller = new $controller;
-    
-    // Llama la accion
-    call_user_func( array( $controller, $accion ) );
-}
-
-if(!isset($_REQUEST['c']))
-{
-    require_once "controller/$controller2.controller.php";
-    $controller2 = ucwords($controller2) . 'Controller';
-    $controller2 = new $controller2;
-    $controller2->Index();    
-}
-else
-{
-    // Obtenemos el controlador que queremos cargar
-    $controller2 = strtolower($_REQUEST['c']);
-    $accion2 = isset($_REQUEST['a']) ? $_REQUEST['a'] : 'Index';
-    
-    // Instanciamos el controlador
-    require_once "controller/$controller2.controller.php";
-    $controller2 = ucwords($controller2) . 'Controller';
-    $controller2 = new $controller2;
-    
-    // Llama la accion
-    call_user_func( array( $controller2, $accion2 ) );
-}
+?>
